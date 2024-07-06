@@ -3,12 +3,12 @@ import wallet from "./dev-wallet.json"
 
 const keypair = Keypair.fromSecretKey(new Uint8Array(wallet));
 
-//Create a Solana devnet connection to devnet SOL tokens
+// Create a Solana devnet connection object
 const connection = new Connection("https://api.devnet.solana.com");
 
 (async () => {
     try {
-        // We're going to claim 2 devnet SOL tokens
+        // Claim 2 devnet SOL tokens (returns the transfer hash)
         const txhash = await connection.requestAirdrop(keypair.publicKey, 2 * LAMPORTS_PER_SOL);
         console.log(`Success! Check out your TX here: 
         https://explorer.solana.com/tx/${txhash}?cluster=devnet`);
@@ -17,4 +17,4 @@ const connection = new Connection("https://api.devnet.solana.com");
     }
 })();
 
-// terminal _> yarn airdrop
+// terminal -> yarn airdrop
