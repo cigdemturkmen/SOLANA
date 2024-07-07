@@ -5,7 +5,7 @@ import wallet from "./dev-wallet.json";
 
 const keypair = Keypair.fromSecretKey(new Uint8Array(wallet));
 const connection = new Connection("https://api.devnet.solana.com");
-const github = Buffer.from("https://github.com/cigdemturkmen", "utf8");
+const github = Buffer.from("cigdemturkmen", "utf8");
 const provider = new AnchorProvider(connection, new Wallet(keypair), { commitment: "confirmed" });
 const program: Program<WbaPrereq> = new Program(IDL, provider);
 const enrollment_seeds = [Buffer.from("prereq"), keypair.publicKey.toBuffer()];
@@ -28,3 +28,5 @@ const [enrollment_key, _bump] = PublicKey.findProgramAddressSync(enrollment_seed
       console.error(`Oops, something went wrong: ${e}`)
     }
   })();
+
+  // terminal -> yarn enroll
